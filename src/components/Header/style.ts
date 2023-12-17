@@ -6,8 +6,8 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  /* max-width: 1160px; */
-  padding: 2rem 1.25rem;
+  max-width: 1440px;
+  padding: 2rem 0rem;
 `
 
 export const Actions = styled.aside`
@@ -31,6 +31,7 @@ export const Actions = styled.aside`
 
     span {
       color: ${(props) => props.theme['purple-800']};
+      ${tipografia.fonts.textS}
     }
   }
 
