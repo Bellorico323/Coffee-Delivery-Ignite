@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const LayoutContainer = styled.div`
-  max-width: 1440px;
-  margin: 0 auto;
+  /* max-width: 1160px;
+  margin: 0 auto; */
 
   background: ${(props) => props.theme['white-bg']};
 

@@ -4,10 +4,10 @@ import { tipografia } from '../../styles/tipografia'
 export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
-  max-width: 1440px;
-  padding: 2rem 0rem;
+  width: 1160px;
+  padding: 2rem 1.25rem;
+  margin: 0 auto;
 `
 
 export const Actions = styled.aside`
