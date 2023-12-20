@@ -74,4 +74,8 @@ export const CoffeeList = styled.div`
     ${tipografia.fonts.titleL}
     color: ${(props) => props.theme['brown-700']}
   }
+
+  > div {
+    margin-top: 3.375rem;
+  }
 `
