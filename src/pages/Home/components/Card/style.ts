@@ -58,3 +58,91 @@ export const CardContent = styled.div`
     margin-top: 0.5rem;
   }
 `
+
+export const Buy = styled.div`
+  display: flex;
+  margin-top: 2rem;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+`
+
+export const Price = styled.div`
+  display: flex;
+  gap: 2px;
+
+  span {
+    ${tipografia.fonts.textS}
+    color: ${(props) => props.theme['brown-700']};
+    align-self: center;
+    margin-top: 4px;
+  }
+`
+
+export const Value = styled.p`
+  ${tipografia.fonts.titleM}
+  align-self: center;
+`
+
+export const Actions = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  > button {
+    background: ${(props) => props.theme['purple-800']};
+    border: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > svg {
+      color: ${(props) => props.theme['white-bg']};
+    }
+  }
+`
+
+export const Counter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 0.5rem;
+  border-radius: 6px;
+
+  background: ${(props) => props.theme['gray-300']};
+
+  > button {
+    border: none;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${(props) => props.theme['purple-500']};
+
+    font-weight: bold;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:hover {
+      color: ${(props) => props.theme['purple-800']};
+    }
+  }
+
+  > span {
+    ${tipografia.fonts.textM}
+    color: ${(props) => props.theme['brown-700']};
+    height: 22px;
+    width: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`
