@@ -10,20 +10,35 @@ import {
   Value,
 } from './style'
 
-export function Card() {
+type CoffeeProps = {
+  coffee: {
+    id: string
+    title: string
+    description: string
+    tags: string[]
+    price: number
+    image: string
+  }
+}
+
+export function Card({ coffee }: CoffeeProps) {
   return (
     <CardContainer>
-      <img src="/images/coffees/americano.png" alt="" />
+      <img src={coffee.image} alt={coffee.title} />
 
-      <Tag>Tradicional</Tag>
+      <Tag>
+        {coffee.tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
+      </Tag>
       <CardContent>
-        <h3>Expresso Tradicional</h3>
-        <p>O tradicional café feito com água quente e grãos moídos</p>
+        <h3>{coffee.title}</h3>
+        <p>{coffee.description}</p>
       </CardContent>
       <Buy>
         <Price>
           <span>R$</span>
-          <Value>9,90</Value>
+          <Value>{coffee.price.toFixed(2)}</Value>
         </Price>
         <Actions>
           <Counter>

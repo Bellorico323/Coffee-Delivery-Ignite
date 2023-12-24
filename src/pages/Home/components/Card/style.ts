@@ -19,21 +19,27 @@ export const CardContainer = styled.div`
   }
 `
 
-export const Tag = styled.span`
-  padding: 4px 8px;
+export const Tag = styled.div`
+  > span {
+    padding: 4px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 130%;
+
+    color: ${(props) => props.theme['yellow-800']};
+    background: ${(props) => props.theme['yellow-100']};
+  }
+
   display: flex;
-  justify-content: center;
   align-items: center;
-  border-radius: 100px;
-
-  font-size: 10px;
-  text-transform: uppercase;
-  font-weight: bold;
-  line-height: 130%;
-
-  color: ${(props) => props.theme['yellow-800']};
-  background: ${(props) => props.theme['yellow-100']};
-
+  align-self: center;
+  gap: 4px;
   margin-top: 12px;
 `
 export const CardContent = styled.div`

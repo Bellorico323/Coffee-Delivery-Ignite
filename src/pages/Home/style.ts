@@ -77,5 +77,9 @@ export const CoffeeList = styled.div`
 
   > div {
     margin-top: 3.375rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 2rem;
+    row-gap: 40px;
   }
 `
