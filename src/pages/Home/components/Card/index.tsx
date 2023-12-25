@@ -9,6 +9,7 @@ import {
   Tag,
   Value,
 } from './style'
+import { useState } from 'react'
 
 type CoffeeProps = {
   coffee: {
@@ -22,6 +23,16 @@ type CoffeeProps = {
 }
 
 export function Card({ coffee }: CoffeeProps) {
+  const [numberOfItens, setNumberOfItens] = useState(0)
+
+  function improveNumberOfItens() {
+    setNumberOfItens(numberOfItens + 1)
+  }
+
+  function decreaseNumberOfItens() {
+    if (numberOfItens > 0) setNumberOfItens(numberOfItens - 1)
+  }
+
   return (
     <CardContainer>
       <img src={coffee.image} alt={coffee.title} />
@@ -42,11 +53,11 @@ export function Card({ coffee }: CoffeeProps) {
         </Price>
         <Actions>
           <Counter>
-            <button>
+            <button onClick={decreaseNumberOfItens}>
               <Minus size={14} weight="bold" />
             </button>
-            <span>1</span>
-            <button>
+            <span>{numberOfItens}</span>
+            <button onClick={improveNumberOfItens}>
               <Plus size={14} weight="bold" />
             </button>
           </Counter>
