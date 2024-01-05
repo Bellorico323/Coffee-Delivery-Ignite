@@ -122,4 +122,21 @@ export const PaymentForm = styled.form`
   gap: 12px;
 `
 
-export const CoffeeCard = styled.div``
+export const CoffeeContainer = styled.div`
+  > h2 {
+    ${tipografia.fonts.titleXS};
+    color: ${(props) => props.theme['brown-700']};
+  }
+`
+
+export const CoffeeDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  border-radius: 6px 44px 6px 44px;
+
+  width: 448px;
+
+  background-color: ${(props) => props.theme['gray-100']};
+  padding: 40px;
+`

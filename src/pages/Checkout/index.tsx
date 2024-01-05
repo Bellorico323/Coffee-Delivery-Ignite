@@ -4,7 +4,8 @@ import {
   BaseInput,
   CardHeader,
   CheckoutContainer,
-  CoffeeCard,
+  CoffeeContainer,
+  CoffeeDetails,
   FormContainer,
   LocationDetails,
   OrderDetails,
@@ -75,9 +76,13 @@ export function Checkout() {
             </PaymentForm>
           </PaymentDetails>
         </OrderDetails>
-        <CoffeeCard>
+        <CoffeeContainer>
           <h2>Cafés selecionados</h2>
-        </CoffeeCard>
+          <CoffeeDetails>
+            <div></div>
+            <div></div>
+          </CoffeeDetails>
+        </CoffeeContainer>
       </CheckoutContainer>
     </div>
   )
