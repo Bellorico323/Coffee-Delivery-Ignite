@@ -140,3 +140,138 @@ export const CoffeeDetails = styled.div`
   background-color: ${(props) => props.theme['gray-100']};
   padding: 40px;
 `
+
+export const CooffeeHolder = styled.div`
+  > span {
+    display: block;
+    height: 1px;
+    background-color: ${(props) => props.theme['gray-300']};
+    margin: 24px 0;
+  }
+`
+
+export const Coffee = styled.div`
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  gap: 20px;
+
+  background-color: ${(props) => props.theme['gray-100']};
+
+  > img {
+    height: 64px;
+    width: 64px;
+  }
+`
+
+export const Details = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  > p {
+    ${tipografia.fonts.textM};
+    color: ${(props) => props.theme['brown-700']};
+  }
+`
+export const Buttons = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`
+
+export const Counter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 0.5rem;
+  border-radius: 6px;
+
+  width: 72px;
+  height: 32px;
+
+  background: ${(props) => props.theme['gray-300']};
+
+  > button {
+    border: none;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${(props) => props.theme['purple-500']};
+
+    font-weight: bold;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:hover {
+      color: ${(props) => props.theme['purple-800']};
+    }
+  }
+
+  > span {
+    ${tipografia.fonts.textM}
+    color: ${(props) => props.theme['brown-700']};
+    height: 22px;
+    width: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`
+
+export const RemoveButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 6px;
+  gap: 4px;
+
+  background: ${(props) => props.theme['gray-300']};
+
+  height: 32px;
+  padding: 0px 8px;
+
+  &:hover {
+    background-color: ${(props) => props.theme['gray-400']};
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  > svg {
+    color: ${(props) => props.theme['purple-500']};
+
+    &:hover {
+      color: ${(props) => props.theme['purple-800']};
+    }
+  }
+
+  > span {
+    ${tipografia.fonts.buttonM};
+    text-transform: uppercase;
+    margin-top: 3px;
+    color: ${(props) => props.theme['brown-500']};
+  }
+`
+
+export const Price = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: start;
+
+  margin-top: 20px;
+
+  height: 100%;
+  width: 100%;
+
+  color: ${(props) => props.theme['brown-5  00']};
+  font-weight: bold;
+`

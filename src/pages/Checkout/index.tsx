@@ -1,16 +1,31 @@
-import { CreditCard, CurrencyDollar, MapPinLine } from '@phosphor-icons/react'
+import {
+  CreditCard,
+  CurrencyDollar,
+  MapPinLine,
+  Minus,
+  Plus,
+  Trash,
+} from '@phosphor-icons/react'
+import { coffees } from '../../../data.json'
 
 import {
   BaseInput,
+  Buttons,
   CardHeader,
   CheckoutContainer,
+  Coffee,
   CoffeeContainer,
   CoffeeDetails,
+  CooffeeHolder,
+  Counter,
+  Details,
   FormContainer,
   LocationDetails,
   OrderDetails,
   PaymentDetails,
   PaymentForm,
+  Price,
+  RemoveButton,
 } from './style'
 import { useTheme } from 'styled-components'
 import { Radio } from '../../components/Form/Radio'
@@ -79,8 +94,65 @@ export function Checkout() {
         <CoffeeContainer>
           <h2>Cafés selecionados</h2>
           <CoffeeDetails>
-            <div></div>
-            <div></div>
+            <CooffeeHolder>
+              <Coffee>
+                <img src={coffees[0].image} alt="" sizes="64px" />
+                <Details>
+                  <div>
+                    <p>{coffees[0].title}</p>
+                  </div>
+                  <Buttons>
+                    <Counter>
+                      <button /* onClick={decreaseNumberOfItens} */>
+                        <Minus size={14} weight="bold" />
+                      </button>
+                      <span>1</span>
+                      <button /* onClick={improveNumberOfItens} */>
+                        <Plus size={14} weight="bold" />
+                      </button>
+                    </Counter>
+                    <RemoveButton>
+                      <Trash size={16} />
+                      <span>remover</span>
+                    </RemoveButton>
+                  </Buttons>
+                </Details>
+                <Price>
+                  <span>R$ {coffees[0].price.toFixed(2)}</span>
+                </Price>
+              </Coffee>
+              <span />
+            </CooffeeHolder>
+            <CooffeeHolder>
+              <Coffee>
+                <img src={coffees[0].image} alt="" sizes="64px" />
+                <Details>
+                  <div>
+                    <p>{coffees[0].title}</p>
+                  </div>
+                  <Buttons>
+                    <Counter>
+                      <button /* onClick={decreaseNumberOfItens} */>
+                        <Minus size={14} weight="bold" />
+                      </button>
+                      <span>1</span>
+                      <button /* onClick={improveNumberOfItens} */>
+                        <Plus size={14} weight="bold" />
+                      </button>
+                    </Counter>
+                    <RemoveButton>
+                      <Trash size={16} />
+                      <span>remover</span>
+                    </RemoveButton>
+                  </Buttons>
+                </Details>
+                <Price>
+                  <span>R$ {coffees[0].price.toFixed(2)}</span>
+                </Price>
+              </Coffee>
+              <span />
+            </CooffeeHolder>
+            <span />
           </CoffeeDetails>
         </CoffeeContainer>
       </CheckoutContainer>
