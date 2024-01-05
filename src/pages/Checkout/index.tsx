@@ -1,4 +1,5 @@
-import { MapPinLine } from '@phosphor-icons/react'
+import { CreditCard, CurrencyDollar, MapPinLine } from '@phosphor-icons/react'
+
 import {
   BaseInput,
   CardHeader,
@@ -7,13 +8,15 @@ import {
   FormContainer,
   LocationDetails,
   OrderDetails,
+  PaymentDetails,
+  PaymentForm,
 } from './style'
 import { useTheme } from 'styled-components'
-// import { useForm } from 'react-hook-form'
+import { Radio } from '../../components/Form/Radio'
 
 export function Checkout() {
   const theme = useTheme()
-  // const { register, handleSubmit } = useForm()
+
   return (
     <div>
       <CheckoutContainer>
@@ -42,6 +45,35 @@ export function Checkout() {
               <BaseInput id="state" placeholder="UF" />
             </FormContainer>
           </LocationDetails>
+
+          <PaymentDetails>
+            <CardHeader>
+              <div>
+                <CurrencyDollar size={22} color={theme['purple-500']} />
+              </div>
+              <div>
+                <h3>Pagamento</h3>
+                <span>
+                  O pagamento é feito na entrega. Escolha a forma que deseja
+                  pagar
+                </span>
+              </div>
+            </CardHeader>
+            <PaymentForm>
+              <Radio isSelected={true}>
+                <CreditCard size={16} />
+                <span>Cartão de débito</span>
+              </Radio>
+              <Radio isSelected={false}>
+                <CreditCard size={16} />
+                <span>Cartão de débito</span>
+              </Radio>
+              <Radio isSelected={false}>
+                <CreditCard size={16} />
+                <span>Cartão de débito</span>
+              </Radio>
+            </PaymentForm>
+          </PaymentDetails>
         </OrderDetails>
         <CoffeeCard>
           <h2>Cafés selecionados</h2>

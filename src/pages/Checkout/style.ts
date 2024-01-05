@@ -106,4 +106,20 @@ export const BaseInput = styled.input`
   ${tipografia.fonts.textS}
 `
 
+export const PaymentDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  border-radius: 6px;
+
+  background-color: ${(props) => props.theme['gray-100']};
+  padding: 40px;
+`
+
+export const PaymentForm = styled.form`
+  margin-top: 2rem;
+  display: flex;
+  gap: 12px;
+`
+
 export const CoffeeCard = styled.div``

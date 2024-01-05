@@ -4,8 +4,8 @@ import { MapPin, ShoppingCart } from '@phosphor-icons/react'
 export function Header() {
   return (
     <HeaderContainer>
-      <Link to="/">
-        <img src="/logo.svg" alt="Coffee Delivery" />
+      <Link to="/" draggable={false}>
+        <img src="/logo.svg" alt="Coffee Delivery" draggable={false} />
       </Link>
       <Actions>
         <div>
@@ -13,7 +13,7 @@ export function Header() {
           <span>Porto Alegre, RS</span>
         </div>
 
-        <Link to="/Checkout">
+        <Link to="/Checkout" draggable={false}>
           <ShoppingCart size={22} weight="fill" />
           <span>3</span>
         </Link>
