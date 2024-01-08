@@ -12,10 +12,12 @@ import {
   BaseInput,
   Buttons,
   CardHeader,
+  CartTotal,
   CheckoutContainer,
   Coffee,
   CoffeeContainer,
   CoffeeDetails,
+  ConfirmationButton,
   CooffeeHolder,
   Counter,
   Details,
@@ -152,7 +154,25 @@ export function Checkout() {
               </Coffee>
               <span />
             </CooffeeHolder>
-            <span />
+            <CartTotal>
+              <div>
+                <span>Total de itens</span>
+                <span>R$ 29,70</span>
+              </div>
+
+              <div>
+                <span>Entrega</span>
+                <span>R$ 3,50</span>
+              </div>
+
+              <div>
+                <span>Total</span>
+                <span>R$ 33,20</span>
+              </div>
+            </CartTotal>
+            <ConfirmationButton type="submit" form="order">
+              Confirmar pedido
+            </ConfirmationButton>
           </CoffeeDetails>
         </CoffeeContainer>
       </CheckoutContainer>

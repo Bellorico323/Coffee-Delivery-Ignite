@@ -46,7 +46,7 @@ export const CardHeader = styled.header`
     line-height: 1.3;
   }
 `
-export const FormContainer = styled.div`
+export const FormContainer = styled.form`
   display: grid;
   grid-template-areas:
     'CEP . .'
@@ -274,4 +274,50 @@ export const Price = styled.div`
 
   color: ${(props) => props.theme['brown-5  00']};
   font-weight: bold;
+`
+
+export const CartTotal = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span:first-child {
+      ${tipografia.fonts.textS};
+    }
+
+    span:last-child {
+      ${tipografia.fonts.textM};
+    }
+  }
+
+  div:last-child {
+    span {
+      ${tipografia.fonts.textL};
+      font-weight: bold;
+    }
+  }
+`
+export const ConfirmationButton = styled.button`
+  margin-top: 24px;
+  width: 100%;
+  padding: 12px;
+  text-transform: uppercase;
+  border: none;
+
+  ${tipografia.fonts.buttonG};
+  color: ${(props) => props.theme.white};
+  background-color: ${(props) => props.theme['yellow-500']};
+
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: ${(props) => props.theme['yellow-800']};
+  }
+
+  border-radius: 6px;
 `
