@@ -15,7 +15,6 @@ import { useForm } from 'react-hook-form'
 import * as zod from 'zod'
 
 import {
-  BaseInput,
   Buttons,
   CardHeader,
   CartTotal,
@@ -36,14 +35,15 @@ import {
   RemoveButton,
 } from './style'
 import { useTheme } from 'styled-components'
-import { Radio } from '../../components/Form/Radio'
+import { Radio } from './FormComponents/Radio'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { TextInput } from './FormComponents/TextInput'
 
 const FormSchema = zod.object({
-  CEP: zod.string(),
+  CEP: zod.number(),
   street: zod.string(),
   number: zod.string(),
-  fullAddres: zod.string(),
+  fullAddress: zod.string(),
   neighborhood: zod.string(),
   city: zod.string(),
   state: zod.string(),
@@ -58,10 +58,10 @@ export function Checkout() {
   const OrderForm = useForm<OrderFormData>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      CEP: '',
+      CEP: undefined,
       street: '',
       number: '',
-      fullAddres: '',
+      fullAddress: '',
       neighborhood: '',
       city: '',
       state: '',
@@ -69,7 +69,11 @@ export function Checkout() {
     },
   })
 
-  const { watch, register } = OrderForm
+  const {
+    watch,
+    register,
+    formState: { errors },
+  } = OrderForm
 
   const selectedPaymentMethod = watch('paymentMethod')
 
@@ -90,16 +94,56 @@ export function Checkout() {
                 </div>
               </CardHeader>
               <FormContainer>
-                <BaseInput id="CEP" placeholder="CEP" />
-                <BaseInput id="street" placeholder="Rua" />
-                <BaseInput id="number" placeholder="Número" />
-                <div id="box">
-                  <BaseInput id="fullAddress" placeholder="Complemento" />
-                  {<span>Opcional</span>}
-                </div>
-                <BaseInput id="neighborhood" placeholder="Bairro" />
-                <BaseInput id="city" placeholder="Cidade" />
-                <BaseInput id="state" placeholder="UF" />
+                <TextInput
+                  placeholder="CEP"
+                  containerProps={{ style: { gridArea: 'CEP' } }}
+                  error={errors.CEP}
+                  {...register('CEP')}
+                />
+
+                <TextInput
+                  placeholder="rua"
+                  containerProps={{ style: { gridArea: 'street' } }}
+                  error={errors.street}
+                  {...register('street')}
+                />
+
+                <TextInput
+                  placeholder="Número"
+                  containerProps={{ style: { gridArea: 'number' } }}
+                  error={errors.number}
+                  {...register('number')}
+                />
+
+                <TextInput
+                  placeholder="Complemento"
+                  optional
+                  containerProps={{ style: { gridArea: 'fullAddress' } }}
+                  error={errors.fullAddress}
+                  {...register('fullAddress')}
+                />
+
+                <TextInput
+                  placeholder="Bairro"
+                  containerProps={{ style: { gridArea: 'neighborhood' } }}
+                  error={errors.neighborhood}
+                  {...register('neighborhood')}
+                />
+
+                <TextInput
+                  placeholder="Cidade"
+                  containerProps={{ style: { gridArea: 'city' } }}
+                  error={errors.city}
+                  {...register('city')}
+                />
+
+                <TextInput
+                  placeholder="UF"
+                  maxLength={2}
+                  containerProps={{ style: { gridArea: 'state' } }}
+                  error={errors.state}
+                  {...register('state')}
+                />
               </FormContainer>
             </LocationDetails>
 

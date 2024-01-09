@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { tipografia } from '../../../styles/tipografia'
+import { tipografia } from '../../../../styles/tipografia'
 
 export const Container = styled.label`
   padding: 1rem;
@@ -11,6 +11,7 @@ export const Container = styled.label`
 
   border-radius: 6px;
   border: 1px solid transparent;
+  cursor: pointer;
 
   background-color: ${(props) => props.theme['gray-300']};
   color: ${(props) => props.theme['brown-200']};

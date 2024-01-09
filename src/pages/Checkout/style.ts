@@ -56,54 +56,6 @@ export const FormContainer = styled.div`
   grid-template-columns: 200px 1fr 60px;
   grid-gap: 16px 12px;
   margin-top: 2rem;
-
-  > #CEP {
-    grid-area: CEP;
-  }
-  > #street {
-    grid-area: street;
-  }
-  > #number {
-    grid-area: number;
-  }
-  > #box {
-    grid-area: fullAddress;
-    position: relative;
-    > #fullAddress {
-      width: 100%;
-    }
-    > span {
-      position: absolute;
-      top: 14px;
-      right: 12px;
-
-      ${tipografia.fonts.textXS}
-      color: ${(props) => props.theme['brown-200']};
-      font-style: italic;
-      font-weight: 400;
-    }
-  }
-  > #neighborhood {
-    grid-area: neighborhood;
-  }
-  > #city {
-    grid-area: city;
-  }
-  > #state {
-    grid-area: state;
-  }
-`
-
-export const BaseInput = styled.input`
-  background: ${(props) => props.theme['gray-200']};
-  color: ${(props) => props.theme['brown-200']};
-  border: 1px solid ${(props) => props.theme['gray-300']};
-  border-radius: 4px;
-
-  padding: 12px;
-  height: 42px;
-
-  ${tipografia.fonts.textS}
 `
 
 export const PaymentDetails = styled.div`
