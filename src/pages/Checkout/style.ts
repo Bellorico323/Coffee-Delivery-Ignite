@@ -46,7 +46,7 @@ export const CardHeader = styled.header`
     line-height: 1.3;
   }
 `
-export const FormContainer = styled.form`
+export const FormContainer = styled.div`
   display: grid;
   grid-template-areas:
     'CEP . .'
@@ -116,7 +116,7 @@ export const PaymentDetails = styled.div`
   padding: 40px;
 `
 
-export const PaymentForm = styled.form`
+export const PaymentForm = styled.div`
   margin-top: 2rem;
   display: flex;
   gap: 12px;
