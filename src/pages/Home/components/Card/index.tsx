@@ -9,9 +9,12 @@ import {
   Tag,
   Value,
 } from './style'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CoffeeContext } from '../../../../contexts/CoffeeContext'
 
-type CoffeeProps = {
+import { coffees } from '../../../../../data.json'
+
+export type CoffeeProps = {
   coffee: {
     id: string
     title: string
@@ -24,9 +27,17 @@ type CoffeeProps = {
 
 export function Card({ coffee }: CoffeeProps) {
   const [numberOfItens, setNumberOfItens] = useState(0)
+  const { coffeeList, setCoffeeList } = useContext(CoffeeContext)
+
+  function addItem(i: string) {
+    const item = coffees.find((coffee) => (coffee.id = i))
+    setCoffeeList([...coffeeList, { item, numberOfItens }])
+    console.log(item)
+  }
 
   function improveNumberOfItens() {
     setNumberOfItens(numberOfItens + 1)
+    addItem(coffee.id)
   }
 
   function decreaseNumberOfItens() {

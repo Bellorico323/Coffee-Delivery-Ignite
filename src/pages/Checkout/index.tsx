@@ -52,17 +52,6 @@ const FormSchema = zod.object({
   }),
 })
 
-type FormInputs = {
-  CEP: number
-  street: string
-  number: string
-  fullAddress: string
-  neighborhood: string
-  city: string
-  state: string
-  paymentMethod: 'credit' | 'debit' | 'cash'
-}
-
 type OrderFormData = zod.infer<typeof FormSchema>
 
 export function Checkout() {
@@ -79,7 +68,7 @@ export function Checkout() {
 
   const selectedPaymentMethod = watch('paymentMethod')
 
-  const handleOrderCheckout: SubmitHandler<FormInputs> = (data) => {
+  const handleOrderCheckout: SubmitHandler<OrderFormData> = (data) => {
     console.log(data)
   }
 

@@ -112,7 +112,7 @@ export const Actions = styled.div`
   }
 `
 
-export const Counter = styled.div`
+export const Counter = styled.div<{ itemAdd?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
