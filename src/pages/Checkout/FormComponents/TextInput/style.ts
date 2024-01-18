@@ -34,6 +34,10 @@ export const Container = styled.label`
     padding: 12px;
     outline: none;
 
+    &:focus {
+      box-shadow: none;
+    }
+
     &:placeholder {
       color: ${(props) => props.theme['brown-200']};
     }

@@ -11,7 +11,7 @@ import {
 
 import { coffees } from '../../../data.json'
 
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import * as zod from 'zod'
 
 import {
@@ -40,49 +40,55 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { TextInput } from './FormComponents/TextInput'
 
 const FormSchema = zod.object({
-  CEP: zod.number(),
-  street: zod.string(),
-  number: zod.string(),
+  CEP: zod.number({ invalid_type_error: 'Informe o CEP' }),
+  street: zod.string().min(1, 'Informe a rua'),
+  number: zod.string().min(1, 'Informe o número'),
   fullAddress: zod.string(),
-  neighborhood: zod.string(),
-  city: zod.string(),
-  state: zod.string(),
-  paymentMethod: zod.enum(['credit', 'debit', 'cash', '']),
+  neighborhood: zod.string().min(1, 'Informe o bairro'),
+  city: zod.string().min(1, 'Informe a cidade'),
+  state: zod.string().min(1, 'Informe o UF'),
+  paymentMethod: zod.enum(['credit', 'debit', 'cash'], {
+    invalid_type_error: 'Informe um método de pagamento',
+  }),
 })
+
+type FormInputs = {
+  CEP: number
+  street: string
+  number: string
+  fullAddress: string
+  neighborhood: string
+  city: string
+  state: string
+  paymentMethod: 'credit' | 'debit' | 'cash'
+}
 
 type OrderFormData = zod.infer<typeof FormSchema>
 
 export function Checkout() {
   const theme = useTheme()
 
-  const OrderForm = useForm<OrderFormData>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      CEP: undefined,
-      street: '',
-      number: '',
-      fullAddress: '',
-      neighborhood: '',
-      city: '',
-      state: '',
-      paymentMethod: '', // está errado
-    },
-  })
-
   const {
     watch,
     register,
+    handleSubmit,
     formState: { errors },
-  } = OrderForm
+  } = useForm<OrderFormData>({
+    resolver: zodResolver(FormSchema),
+  })
 
   const selectedPaymentMethod = watch('paymentMethod')
+
+  const handleOrderCheckout: SubmitHandler<FormInputs> = (data) => {
+    console.log(data)
+  }
 
   return (
     <div>
       <CheckoutContainer>
         <OrderDetails>
           <h2>Complete seu pedido</h2>
-          <form id="order">
+          <form id="order" onSubmit={handleSubmit(handleOrderCheckout)}>
             <LocationDetails>
               <CardHeader>
                 <div>
@@ -98,7 +104,7 @@ export function Checkout() {
                   placeholder="CEP"
                   containerProps={{ style: { gridArea: 'CEP' } }}
                   error={errors.CEP}
-                  {...register('CEP')}
+                  {...register('CEP', { valueAsNumber: true })}
                 />
 
                 <TextInput

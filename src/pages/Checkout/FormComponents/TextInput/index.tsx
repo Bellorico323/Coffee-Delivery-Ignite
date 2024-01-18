@@ -10,14 +10,14 @@ import {
 import { FieldError } from 'react-hook-form'
 import { Box, Container, ErrorMessage } from './style'
 
-type Props = InputHTMLAttributes<HTMLInputElement> & {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   optional?: boolean
   containerProps?: HTMLAttributes<HTMLDivElement>
   error?: FieldError
 }
 
 export const TextInput = forwardRef(function TextInput(
-  { optional, error, containerProps, onFocus, onBlur, ...rest }: Props,
+  { optional, error, containerProps, onFocus, onBlur, ...rest }: InputProps,
   ref: LegacyRef<HTMLInputElement>,
 ) {
   const [isFocused, setIsFocused] = useState(false)
@@ -40,9 +40,9 @@ export const TextInput = forwardRef(function TextInput(
           onFocus={handleFocus}
           onBlur={handleBlur}
           ref={ref}
+          autoComplete="off"
           {...rest}
         />
-
         {optional ? <span>Opcional</span> : null}
       </Container>
 
