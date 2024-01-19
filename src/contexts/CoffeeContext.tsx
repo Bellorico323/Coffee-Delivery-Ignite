@@ -1,5 +1,14 @@
-import { ReactNode, createContext, useState } from 'react'
-import { coffees } from '../../data.json'
+import { ReactNode, createContext, useReducer, useEffect } from 'react'
+import { CheckoutReducer, Item, Order } from '../reducers/reducer'
+import { OrderInfo } from '../pages/Checkout'
+import { useNavigate } from 'react-router-dom'
+import {
+  addItemAction,
+  checkoutCartAction,
+  decrementItemQuantityAction,
+  incrementItemQuantityAction,
+  removeItemAction,
+} from '../reducers/actions'
 
 export interface Coffee {
   coffee: {
@@ -12,9 +21,17 @@ export interface Coffee {
   }
 }
 
-interface CoffeeContextType {}
+interface CartContextType {
+  cart: Item[]
+  orders: Order[]
+  addItem: (item: Item) => void
+  removeItem: (itemId: Item['id']) => void
+  decrementItemQuantity: (itemId: Item['id']) => void
+  incrementItemQuantity: (itemId: Item['id']) => void
+  checkout: (order: OrderInfo) => void
+}
 
-export const CoffeeContext = createContext({} as CoffeeContextType)
+export const CartContext = createContext({} as CartContextType)
 
 interface CoffeeContextProviderProps {
   children: ReactNode
@@ -23,5 +40,66 @@ interface CoffeeContextProviderProps {
 export function CoffeeContextProvider({
   children,
 }: CoffeeContextProviderProps) {
-  return <CoffeeContext.Provider value={{}}>{children}</CoffeeContext.Provider>
+  const [cartState, dispatch] = useReducer(
+    CheckoutReducer,
+    {
+      cart: [],
+      orders: [],
+    },
+    (cartState) => {
+      const storedStateAsJSON = localStorage.getItem(
+        '@coffee-delivery:cart-state-1.0.0',
+      )
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON)
+      }
+      return cartState
+    },
+  )
+  const navigate = useNavigate()
+
+  const { cart, orders } = cartState
+
+  function addItem(item: Item) {
+    dispatch(addItemAction(item))
+  }
+
+  function removeItem(itemId: Item['id']) {
+    dispatch(removeItemAction(itemId))
+  }
+
+  function checkout(order: OrderInfo) {
+    dispatch(checkoutCartAction(order, navigate))
+  }
+
+  function incrementItemQuantity(itemId: Item['id']) {
+    dispatch(incrementItemQuantityAction(itemId))
+  }
+
+  function decrementItemQuantity(itemId: Item['id']) {
+    dispatch(decrementItemQuantityAction(itemId))
+  }
+
+  useEffect(() => {
+    if (cartState) {
+      const stateJSON = JSON.stringify(cartState)
+      localStorage.setItem('@coffee-delivery:cart-state-1.0.0', stateJSON)
+    }
+  }, [cartState])
+
+  return (
+    <CartContext.Provider
+      value={{
+        addItem,
+        removeItem,
+        checkout,
+        incrementItemQuantity,
+        decrementItemQuantity,
+        cart,
+        orders,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  )
 }

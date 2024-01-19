@@ -1,61 +1,105 @@
-import { Minus, Plus, ShoppingCartSimple } from '@phosphor-icons/react'
+import { CheckFat, ShoppingCart } from '@phosphor-icons/react'
+import { useTheme } from 'styled-components'
+import { useEffect, useState } from 'react'
+
 import {
-  Buy,
-  CardContainer,
-  CardContent,
-  Counter,
-  Actions,
+  CoffeeImg,
+  Container,
+  Control,
+  Description,
+  Order,
   Price,
-  Tag,
-  Value,
+  Tags,
+  Title,
 } from './style'
-import { useState } from 'react'
-import { Coffee } from '../../../../contexts/CoffeeContext'
+import { QuantityInput } from '../../../Checkout/FormComponents/QuantityInput'
+import { useCart } from '../../../../hooks/useCart'
 
-export function Card({ coffee }: Coffee) {
-  const [numberOfItens, setNumberOfItens] = useState(0)
+type Props = {
+  coffee: {
+    id: string
+    title: string
+    description: string
+    tags: string[]
+    price: number
+    image: string
+  }
+}
 
-  function improveNumberOfItens() {
-    setNumberOfItens(numberOfItens + 1)
+export function Card({ coffee }: Props) {
+  const [quantity, setQuantity] = useState(0)
+  const [isItemAdded, setIsItemAdded] = useState(false)
+  const theme = useTheme()
+  const { addItem } = useCart()
+
+  function incrementQuantity() {
+    setQuantity((state) => state + 1)
   }
 
-  function decreaseNumberOfItens() {
-    if (numberOfItens > 0) setNumberOfItens(numberOfItens - 1)
+  function decrementQuantity() {
+    if (quantity > 1) {
+      setQuantity((state) => state - 1)
+    }
   }
+
+  function handleAddItem() {
+    addItem({ id: coffee.id, quantity })
+    setIsItemAdded(true)
+    setQuantity(1)
+  }
+
+  useEffect(() => {
+    let timeout: number
+
+    if (isItemAdded) {
+      timeout = setTimeout(() => {
+        setIsItemAdded(false)
+      }, 1000)
+    }
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout)
+      }
+    }
+  }, [isItemAdded])
 
   return (
-    <CardContainer>
-      <img src={coffee.image} alt={coffee.title} />
+    <Container>
+      <CoffeeImg src={coffee.image} alt={coffee.title} />
 
-      <Tag>
+      <Tags>
         {coffee.tags.map((tag) => (
           <span key={tag}>{tag}</span>
         ))}
-      </Tag>
-      <CardContent>
-        <h3>{coffee.title}</h3>
-        <p>{coffee.description}</p>
-      </CardContent>
-      <Buy>
+      </Tags>
+
+      <Title>{coffee.title}</Title>
+
+      <Description>{coffee.description}</Description>
+
+      <Control>
         <Price>
           <span>R$</span>
-          <Value>{coffee.price.toFixed(2)}</Value>
+          <span>{coffee.price.toFixed(2)}</span>
         </Price>
-        <Actions>
-          <Counter>
-            <button onClick={decreaseNumberOfItens}>
-              <Minus size={14} weight="bold" />
-            </button>
-            <span>{numberOfItens}</span>
-            <button onClick={improveNumberOfItens}>
-              <Plus size={14} weight="bold" />
-            </button>
-          </Counter>
-          <button>
-            <ShoppingCartSimple size={22} weight="fill" />
+
+        <Order $itemAdded={isItemAdded}>
+          <QuantityInput
+            quantity={quantity}
+            incrementQuantity={incrementQuantity}
+            decrementQuantity={decrementQuantity}
+          />
+
+          <button disabled={isItemAdded} onClick={handleAddItem}>
+            {isItemAdded ? (
+              <CheckFat weight="fill" size={22} color={theme['gray-100']} />
+            ) : (
+              <ShoppingCart size={22} color={theme['gray-100']} />
+            )}
           </button>
-        </Actions>
-      </Buy>
-    </CardContainer>
+        </Order>
+      </Control>
+    </Container>
   )
 }

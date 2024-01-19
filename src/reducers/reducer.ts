@@ -1,5 +1,5 @@
 import { produce } from 'immer'
-import { OrderFormData } from '../pages/Checkout'
+import { OrderInfo } from '../pages/Checkout'
 import { ActionTypes, Actions } from './actions'
 
 export interface Item {
@@ -7,7 +7,7 @@ export interface Item {
   quantity: number
 }
 
-export interface Order extends OrderFormData {
+export interface Order extends OrderInfo {
   id: number
   items: Item[]
 }
