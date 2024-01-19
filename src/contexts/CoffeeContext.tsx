@@ -1,15 +1,18 @@
 import { ReactNode, createContext, useState } from 'react'
-import { CoffeeProps } from '../pages/Home/components/Card'
+import { coffees } from '../../data.json'
 
-interface ProductsList {
-  coffeeData: CoffeeProps
-  quantity: number
+export interface Coffee {
+  coffee: {
+    id: string
+    title: string
+    description: string
+    tags: string[]
+    price: number
+    image: string
+  }
 }
 
-interface CoffeeContextType {
-  coffeeList: ProductsList[]
-  setCoffeeList: (state: ProductsList[]) => void
-}
+interface CoffeeContextType {}
 
 export const CoffeeContext = createContext({} as CoffeeContextType)
 
@@ -20,16 +23,5 @@ interface CoffeeContextProviderProps {
 export function CoffeeContextProvider({
   children,
 }: CoffeeContextProviderProps) {
-  const [coffeeList, setCoffeeList] = useState<ProductsList[]>([])
-
-  return (
-    <CoffeeContext.Provider
-      value={{
-        coffeeList,
-        setCoffeeList,
-      }}
-    >
-      {children}
-    </CoffeeContext.Provider>
-  )
+  return <CoffeeContext.Provider value={{}}>{children}</CoffeeContext.Provider>
 }

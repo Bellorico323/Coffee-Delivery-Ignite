@@ -52,7 +52,7 @@ const FormSchema = zod.object({
   }),
 })
 
-type OrderFormData = zod.infer<typeof FormSchema>
+export type OrderFormData = zod.infer<typeof FormSchema>
 
 export function Checkout() {
   const theme = useTheme()

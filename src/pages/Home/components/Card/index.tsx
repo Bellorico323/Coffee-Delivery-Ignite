@@ -9,35 +9,14 @@ import {
   Tag,
   Value,
 } from './style'
-import { useContext, useState } from 'react'
-import { CoffeeContext } from '../../../../contexts/CoffeeContext'
+import { useState } from 'react'
+import { Coffee } from '../../../../contexts/CoffeeContext'
 
-import { coffees } from '../../../../../data.json'
-
-export type CoffeeProps = {
-  coffee: {
-    id: string
-    title: string
-    description: string
-    tags: string[]
-    price: number
-    image: string
-  }
-}
-
-export function Card({ coffee }: CoffeeProps) {
+export function Card({ coffee }: Coffee) {
   const [numberOfItens, setNumberOfItens] = useState(0)
-  const { coffeeList, setCoffeeList } = useContext(CoffeeContext)
-
-  function addItem(i: string) {
-    const item = coffees.find((coffee) => (coffee.id = i))
-    setCoffeeList([...coffeeList, { item, numberOfItens }])
-    console.log(item)
-  }
 
   function improveNumberOfItens() {
     setNumberOfItens(numberOfItens + 1)
-    addItem(coffee.id)
   }
 
   function decreaseNumberOfItens() {
